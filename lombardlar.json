@@ -1,0 +1,186 @@
+[
+    {
+        "region_uz": "Andijon viloyati",
+        "region_ru": "Андижанская область",
+        "region_en": "Andijan region",
+        "organizations": [
+            "ASAKA-LOMBARD",
+            "AURUM KREDIT LOMBARD",
+            "DAQIQA KREDIT LOMBARD",
+            "EASY CREDIT LOMBARD",
+            "KALINA KREDIT LOMBARD",
+            "MANDARIN LOMBARD",
+            "YASHMA LOMBARD"
+        ]
+    },
+    {
+        "region_uz": "Buxoro viloyati",
+        "region_ru": "Бухарская область",
+        "region_en": "Bukhara region",
+        "organizations": [
+            "AMIRA INVEST LOMBARD",
+            "BAQOJON PLYUS",
+            "BILLUR TONG YULDUZI",
+            "BUXARA LOMBARD",
+            "COMFORT INVEST LOMBARD",
+            "JAVLON JAVOHIR LOMBARD",
+            "NILUFAR ASILBEK BARAKA",
+            "STAR KREDIT LOMBARD",
+            "SWIFT LOMBARD CREDIT"
+        ]
+    },
+    {
+        "region_uz": "Farg‘ona  viloyati",
+        "region_ru": "Ферганская область",
+        "region_en": "Fergana region",
+        "organizations": [
+            "AFINA FINANCE LOMBARD",
+            "FERGANA LOMBARD",
+            "OPTIMUM KREDIT LOMBARD",
+            "UNION STANDART FINANCE",
+            "VODI LOMBARD"
+        ]
+    },
+    {
+        "region_uz": "Jizzax viloyati",
+        "region_ru": "Джизакская область",
+        "region_en": "Jizzakh region",
+        "organizations": [
+            "CENTRAL LOMBARD",
+            "DAVR LOMBARD"
+        ]
+    },
+    {
+        "region_uz": "Namangan viloyati",
+        "region_ru": "Наманганская область",
+        "region_en": "Namangan region",
+        "organizations": [
+            "LOMBARD LOTOS KREDIT",
+            "TODAY FINANCE LOMBARD"
+        ]
+    },
+    {
+        "region_uz": "Navoiy viloyati",
+        "region_ru": "Навоийская область",
+        "region_en": "Navoi region",
+        "organizations": [
+            "ALMAZ KREDIT NAVOIY LOMBARD",
+            "NAVOIY LOMBARD PLUS",
+            "PUL SANDIQ LOMBARD"
+        ]
+    },
+    {
+        "region_uz": "Qoraqalpog‘iston Respublikasi",
+        "region_ru": "Республика Каракалпакстан",
+        "region_en": "Republic of Karakalpakstan",
+        "organizations": [
+            "JAHAN NUKUS LOMBARD"
+        ]
+    },
+    {
+        "region_uz": "Samarqand viloyati",
+        "region_ru": "Самаркандская область",
+        "region_en": "Samarkand region",
+        "organizations": [
+            "LOMBARD TOPAZ KREDIT",
+            "MAROKAND LOMBARD"
+        ]
+    },
+    {
+        "region_uz": "Sirdaryo viloyati",
+        "region_ru": "Сырдарьинская область",
+        "region_en": "Syrdarya region",
+        "organizations": [
+            "MAXIMUM LOMBARD",
+            "NORIK-CREDIT"
+        ]
+    },
+    {
+        "region_uz": "Surxondaryo viloyati",
+        "region_ru": "Сурхандарьинская область",
+        "region_en": "Surkhandarya region",
+        "organizations": [
+            "DENOV-KREDIT LOMBARD",
+            "LOMBARD QULAY-KREDIT"
+        ]
+    },
+    {
+        "region_uz": "Toshkent shahri",
+        "region_ru": "город Ташкент",
+        "region_en": "Tashkent city",
+        "organizations": [
+            "AKTIV LOMBARD",
+            "ALBATROS-KREDIT LOMBARD",
+            "ARTFAM-INVEST LOMBARD",
+            "ASKIYA LOMBARD",
+            "ATSLAHA-18",
+            "BILOL DAROMAD LOMBARD",
+            "CHINARA BIZNES KREDIT LOMBARD",
+            "CLASSIC-LOMBARD",
+            "CREDIT FLEX LOMBARD",
+            "CREDIT INVEST GROUP LOMBARD",
+            "FARHOD LOMBARD",
+            "HASHAMATLI CHINOR LOMBARD",
+            "KO'MAK KREDIT LOMBARD",
+            "LAMUS LOMBARD",
+            "LOBAR KREDIT NUR LOMBARD",
+            "LOMBARD 911",
+            "LOMBARD ASAT-KREDIT",
+            "LOMBARD AVANGARD-KREDIT",
+            "LOMBARD BARDOSH-BIZNES",
+            "LOMBARD BIZNES AZIA INVEST",
+            "LOMBARD DAROFF-INVEST",
+            "LOMBARD EVRIKA KREDIT",
+            "LOMBARD HAMKOR-KREDIT",
+            "LOMBARD IXLOS INVEST",
+            "LOMBARD JAYRON KREDIT",
+            "LOMBARD KRISTAL-KREDIT",
+            "LOMBARD PROFIT SERVICE",
+            "LOMBARD QUSHBEGI-KREDIT",
+            "LOMBARD RELIABLE-CREDIT",
+            "LOMBARD SERGELI KREDIT",
+            "LOMBARD SHOKIR INVEST",
+            "LOMBARD SIMXO RUBEN",
+            "LOMBARD SITORA SARMOYA",
+            "LOMBARD STOLICHNIY KREDIT",
+            "LOMBARD SVETLANA-KREDIT",
+            "LOMBARD TASHKREDIT",
+            "LOMBARD VENERA KREDIT",
+            "LOMBARD-SHARQ KREDIT",
+            "OLOY-INVEST LOMBARD",
+            "OLTIN LOMBARD",
+            "OQTEPA CAPITAL LOMBARD",
+            "PLATINUM LOMBARD",
+            "SARMOYA-MADAD LOMBARD",
+            "SEIF LOMBARD",
+            "SHAXZOD NUR KREDIT LOMBARD",
+            "SHERZOD KREDIT INVEST LOMBARD",
+            "ZOLOTO LOMBARD"
+        ]
+    },
+    {
+        "region_uz": "Toshkent viloyati",
+        "region_ru": "Ташкентская область",
+        "region_en": "Tashkent region",
+        "organizations": [
+            "DAROMAD INVEST LOMBARD",
+            "IDEAL KREDIT LOMBARD",
+            "LOMBARD GAZALKENT KREDIT",
+            "LOMBARD GOLD FINANCE BUSINESS",
+            "LOMBARD GOLDEN-KREDIT",
+            "LOMBARD KIBRAY-KREDIT",
+            "LOMBARD YANGIBOZOR KREDIT",
+            "MOMENT KREDIT LOMBARD",
+            "TO'Y-TEPA KREDIT",
+            "YANGI YO'L ISHONCH KREDIT LOMBARD"
+        ]
+    },
+    {
+        "region_uz": "Xorazm viloyati",
+        "region_ru": "Хорезмская область",
+        "region_en": "Khorezm region",
+        "organizations": [
+            "XORAZM LOMBARD PLUS"
+        ]
+    }
+]
