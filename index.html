@@ -252,11 +252,10 @@
 
     let regionsData = [];
     let lombardsData = [];
-    // Chart instances to destroy/recreate
     let myGenderChart = null;
     let mySatChart = null;
     let mySourceChart = null;
-    let cachedDashboardData = null; // Store data to re-render in different lang
+    let cachedDashboardData = null;
 
     let currentLang = localStorage.getItem('preferredLanguage') || 'uz';
 
@@ -276,10 +275,14 @@
             label_suggest: "11. Xizmatlar yanada rivojlanishi uchun takliflaringiz", ph_suggest: "Taklifingiz...",
             btn_submit: "Yuborish", msg_sending: "Yuborilmoqda...", msg_error: "Xatolik!",
             msg_thanks_title: "Rahmat!", msg_thanks_body: "Javobingiz qabul qilindi.",
+            
             // Dashboard translations
             dash_title: "📊 Statistika (Live)", dash_total: "Jami qatnashchilar",
             chart_gender: "Jins", chart_sat: "Qoniqish", chart_source: "Manba",
-            msg_dashboard_footer: "To'liq tahlil har oy yakunida yangilanib berib boriladi."
+            msg_dashboard_footer: "To'liq tahlil har oy yakunida yangilanib berib boriladi.",
+            // Limit Translations
+            msg_limit_title: "Limit tugadi",
+            msg_limit_body: "Siz bugun so‘rovnomani to‘ldirgansiz."
         },
         ru: {
             title: "Оценка услуг ломбарда", intro: "Ваше мнение важно.",
@@ -299,7 +302,10 @@
             // Dashboard
             dash_title: "📊 Статистика (Live)", dash_total: "Всего участников",
             chart_gender: "Пол", chart_sat: "Удовлетворенность", chart_source: "Источник",
-            msg_dashboard_footer: "Полный анализ будет обновляться в конце каждого месяца."
+            msg_dashboard_footer: "Полный анализ будет обновляться в конце каждого месяца.",
+            // Limit Translations
+            msg_limit_title: "Лимит исчерпан",
+            msg_limit_body: "Вы уже заполнили анкету сегодня."
         },
         en: {
             title: "Pawnshop Evaluation", intro: "Your opinion matters.",
@@ -319,7 +325,10 @@
             // Dashboard
             dash_title: "📊 Statistics (Live)", dash_total: "Total Participants",
             chart_gender: "Gender", chart_sat: "Satisfaction", chart_source: "Source",
-            msg_dashboard_footer: "Full analysis will be updated at the end of each month."
+            msg_dashboard_footer: "Full analysis will be updated at the end of each month.",
+            // Limit Translations
+            msg_limit_title: "Limit Reached",
+            msg_limit_body: "You have already submitted the form today."
         }
     };
 
@@ -385,33 +394,31 @@
         currentLang = lang;
         const t = translations[lang];
         
-        // Static text
         document.querySelectorAll('[data-key]').forEach(elem => {
             const key = elem.getAttribute('data-key');
             if (t[key]) elem.innerText = t[key];
         });
         
-        // Placeholders
         document.querySelectorAll('[data-ph]').forEach(elem => {
             const key = elem.getAttribute('data-ph');
             if (t[key]) elem.setAttribute('placeholder', t[key]);
         });
         
-        // Buttons
         document.querySelectorAll('.lang-switch button').forEach(btn => btn.classList.remove('active'));
         document.getElementById(`btn-${lang}`).classList.add('active');
         localStorage.setItem('preferredLanguage', lang);
         
-        // Dropdowns refresh
         populateRegions();
         const tDef = translations[currentLang];
         document.getElementById('districtSelect').innerHTML = `<option value="">${tDef.select_default}</option>`;
         document.getElementById('lombardSelect').innerHTML = `<option value="">${tDef.select_lombard_default}</option>`;
 
-        // Re-render charts if dashboard is active and data exists
         if (cachedDashboardData) {
             renderCharts(cachedDashboardData);
         }
+        
+        // Re-check limit immediately to update message title/body if limit screen is visible
+        checkRateLimit();
     }
 
     const themeToggleBtn = document.getElementById('themeToggle');
@@ -421,7 +428,6 @@
         body.setAttribute('data-theme', newTheme);
         themeToggleBtn.innerText = newTheme === 'dark' ? '🌙' : '☀️';
         localStorage.setItem('theme', newTheme);
-        // If charts exist, re-render to update colors
         if (cachedDashboardData) renderCharts(cachedDashboardData);
     }
     themeToggleBtn.addEventListener('click', toggleTheme);
@@ -433,14 +439,49 @@
         themeToggleBtn.innerText = savedTheme === 'dark' ? '🌙' : '☀️';
         
         initData();
-        fetch('https://api.ipify.org?format=json').then(r => r.json()).then(d => document.getElementById('userIP').value = d.ip);
+        fetch('https://api.ipify.org?format=json').then(r => r.json()).then(d => {
+            document.getElementById('userIP').value = d.ip;
+        });
+        
+        // CHECK LIMIT ON LOAD
+        checkRateLimit();
     });
+
+    // --- CHECK RATE LIMIT ---
+    function checkRateLimit() {
+        const today = new Date().toDateString();
+        const storedDate = localStorage.getItem('lastSubmissionDate');
+
+        // Agar bugun yuborgan bo'lsa
+        if (storedDate === today) {
+            const t = translations[currentLang];
+            document.getElementById('lombardForm').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'block';
+            
+            // Xabarni o'zgartiramiz: Rahmat o'rniga Limit xabari
+            document.querySelector('#successMessage h2').innerText = t.msg_limit_title;
+            document.querySelector('#successMessage p').innerText = t.msg_limit_body;
+            
+            // Qayta yuborish tugmasini YASHIRAMIZ
+            document.querySelector('.retry-btn').style.display = 'none';
+            
+            // Dashboard baribir ko'rinaveradi
+            loadDashboard();
+        }
+    }
 
     const form = document.forms['lombardForm'];
     const submitBtn = document.getElementById('submitBtn');
     
     form.addEventListener('submit', e => {
         e.preventDefault();
+        
+        // Yuborishdan oldin yana bir bor tekshiramiz
+        if (localStorage.getItem('lastSubmissionDate') === new Date().toDateString()) {
+            alert(translations[currentLang].msg_limit_body);
+            return;
+        }
+
         const formData = new FormData(form);
         const sabablar = [];
         document.querySelectorAll('input[name="Sabab"]:checked').forEach((cb) => sabablar.push(cb.value));
@@ -451,10 +492,23 @@
 
         fetch(scriptURL, { method: 'POST', body: formData})
             .then(response => {
+                // MUVAFFAQIYATLI BO'LSA - SANANI SAQLAYMIZ
                 localStorage.setItem('lastSubmissionDate', new Date().toDateString());
+                
                 document.getElementById('loading').style.display = 'none';
                 document.getElementById('lombardForm').style.display = 'none';
                 document.getElementById('successMessage').style.display = 'block';
+                
+                // Muvaffaqiyat xabari (Limit emas)
+                const t = translations[currentLang];
+                document.querySelector('#successMessage h2').innerText = t.msg_thanks_title;
+                document.querySelector('#successMessage p').innerText = t.msg_thanks_body;
+                
+                // Bu holatda birinchi marta bo'lgani uchun "Yana yuborish" tugmasi ko'rinishi mumkin (hozircha yashirmaymiz), 
+                // lekin bosganda sahifa yangilanib limitga tushishi kerak.
+                // Lekin xavfsizlik uchun yashiramiz:
+                document.querySelector('.retry-btn').style.display = 'none';
+
                 loadDashboard();
             })
             .catch(error => {
@@ -482,7 +536,6 @@
     }
 
     function renderCharts(data) {
-        // Destroy existing charts to update language/theme
         if (myGenderChart) myGenderChart.destroy();
         if (mySatChart) mySatChart.destroy();
         if (mySourceChart) mySourceChart.destroy();
@@ -490,7 +543,7 @@
         const isDark = document.body.getAttribute('data-theme') === 'dark';
         const txtColor = isDark ? '#ddd' : '#333';
         const gridColor = isDark ? '#444' : '#ddd';
-        const t = translations[currentLang]; // Get current language text
+        const t = translations[currentLang]; 
 
         // 1. Gender (Pie)
         const ctxGender = document.getElementById('genderChart');
