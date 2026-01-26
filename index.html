@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lombard xizmatlarini baholash</title>
+    <style>
+        :root {
+            --primary-color: #003366; /* To'q ko'k rang */
+            --accent-color: #D4AF37; /* Oltin rang */
+            --bg-color: #f4f7f6;
+            --text-color: #333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            color: var(--text-color);
+        }
+
+        .container {
+            max-width: 700px;
+            background: white;
+            padding: 40px;
+            margin: 0 auto;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-top: 5px solid var(--accent-color);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header img {
+            max-width: 200px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        p.intro {
+            font-size: 14px;
+            color: #666;
+            font-style: italic;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: var(--primary-color);
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 16px;
+            transition: border 0.3s;
+        }
+
+        input[type="text"]:focus,
+        select:focus,
+        textarea:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+
+        .radio-group, .checkbox-group {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 6px;
+        }
+
+        .option-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .option-item input {
+            margin-right: 10px;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .option-item label {
+            margin-bottom: 0;
+            font-weight: normal;
+            color: #333;
+            cursor: pointer;
+        }
+
+        button {
+            width: 100%;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+            font-size: 18px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #002244;
+        }
+        
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            margin-top: 10px;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .success-message {
+            display: none;
+            text-align: center;
+            color: green;
+            padding: 20px;
+            background: #e6fffa;
+            border-radius: 8px;
+            margin-top: 20px;
+            border: 1px solid green;
+        }
+
+        .error-message {
+            display: none;
+            text-align: center;
+            color: red;
+            background: #ffe6e6;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 10px;
+            border: 1px solid red;
+        }
+        
+        /* Limit text style */
+        .limit-info {
+            text-align: right;
+            font-size: 12px;
+            color: #888;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <img src="https://raw.githubusercontent.com/sunattagayev-cloud/Ranking/refs/heads/images/logo_SNS.svg" alt="SNS Logo">
+        <h1>Lombard xizmatlarini baholash</h1>
+        <p class="intro">Assalomu alaykum! Xizmatlarimiz sifatini yaxshilash maqsadida fikringizni bildirsangiz minnatdor bo‘lardik.</p>
+    </div>
+
+    <form id="lombardForm">
+        <!-- Yashirin IP field -->
+        <input type="hidden" name="IP" id="userIP">
+
+        <div class="form-group">
+            <label>1. Ism Familiyangiz</label>
+            <input type="text" name="Ism" required placeholder="To'liq ismingizni kiriting">
+        </div>
+
+        <div class="form-group">
+            <label>2. Yoshingiz</label>
+            <input type="number" name="Yosh" required placeholder="Yoshingiz">
+        </div>
+
+        <div class="form-group">
+            <label>3. Hududni tanlang</label>
+            <select name="Hudud" required>
+                <option value="">-- Tanlang --</option>
+                <option value="Toshkent shahri">Toshkent shahri</option>
+                <option value="Toshkent viloyati">Toshkent viloyati</option>
+                <option value="Andijon">Andijon</option>
+                <option value="Buxoro">Buxoro</option>
+                <option value="Farg'ona">Farg'ona</option>
+                <option value="Jizzax">Jizzax</option>
+                <option value="Xorazm">Xorazm</option>
+                <option value="Namangan">Namangan</option>
+                <option value="Navoiy">Navoiy</option>
+                <option value="Qashqadaryo">Qashqadaryo</option>
+                <option value="Samarqand">Samarqand</option>
+                <option value="Sirdaryo">Sirdaryo</option>
+                <option value="Surxondaryo">Surxondaryo</option>
+                <option value="Qoraqalpog'iston">Qoraqalpog'iston</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>4. Tumanni yozing</label>
+            <input type="text" name="Tuman" required placeholder="Masalan: Chilonzor">
+        </div>
+
+        <div class="form-group">
+            <label>5. Lombardni tanlang</label>
+            <select name="Lombard" required>
+                <option value="">-- Ro'yxatdan tanlang --</option>
+                <option value="AFINA FINANCE LOMBARD">AFINA FINANCE LOMBARD</option>
+                <option value="AKTIV LOMBARD">AKTIV LOMBARD</option>
+                <option value="ALBATROS-KREDIT LOMBARD">ALBATROS-KREDIT LOMBARD</option>
+                <option value="ALMAZ KREDIT NAVOIY LOMBARD">ALMAZ KREDIT NAVOIY LOMBARD</option>
+                <option value="AMIRA INVEST LOMBARD">AMIRA INVEST LOMBARD</option>
+                <option value="ARTFAM-INVEST LOMBARD">ARTFAM-INVEST LOMBARD</option>
+                <option value="ASAKA-LOMBARD">ASAKA-LOMBARD</option>
+                <option value="ASKIYA LOMBARD">ASKIYA LOMBARD</option>
+                <option value="ATSLAHA-18">ATSLAHA-18</option>
+                <option value="AURUM KREDIT LOMBARD">AURUM KREDIT LOMBARD</option>
+                <option value="BAQOJON PLYUS">BAQOJON PLYUS</option>
+                <option value="BILLUR TONG YULDUZI">BILLUR TONG YULDUZI</option>
+                <option value="BILOL DAROMAD LOMBARD">BILOL DAROMAD LOMBARD</option>
+                <option value="BUXARA LOMBARD">BUXARA LOMBARD</option>
+                <option value="CENTRAL LOMBARD">CENTRAL LOMBARD</option>
+                <option value="CHINARA BIZNES KREDIT LOMBARD">CHINARA BIZNES KREDIT LOMBARD</option>
+                <option value="CLASSIC-LOMBARD">CLASSIC-LOMBARD</option>
+                <option value="COMFORT INVEST LOMBARD">COMFORT INVEST LOMBARD</option>
+                <option value="CREDIT FLEX LOMBARD">CREDIT FLEX LOMBARD</option>
+                <option value="CREDIT INVEST GROUP LOMBARD">CREDIT INVEST GROUP LOMBARD</option>
+                <option value="DAQIQA KREDIT LOMBARD">DAQIQA KREDIT LOMBARD</option>
+                <option value="DAROMAD INVEST LOMBARD">DAROMAD INVEST LOMBARD</option>
+                <option value="DAVR LOMBARD">DAVR LOMBARD</option>
+                <option value="DENOV-KREDIT LOMBARD">DENOV-KREDIT LOMBARD</option>
+                <option value="EASY CREDIT LOMBARD">EASY CREDIT LOMBARD</option>
+                <option value="FARHOD LOMBARD">FARHOD LOMBARD</option>
+                <option value="FERGANA LOMBARD">FERGANA LOMBARD</option>
+                <option value="HASHAMATLI CHINOR LOMBARD">HASHAMATLI CHINOR LOMBARD</option>
+                <option value="IDEAL KREDIT LOMBARD">IDEAL KREDIT LOMBARD</option>
+                <option value="JAHAN NUKUS LOMBARD">JAHAN NUKUS LOMBARD</option>
+                <option value="JAVLON JAVOHIR LOMBARD">JAVLON JAVOHIR LOMBARD</option>
+                <option value="KALINA KREDIT LOMBARD">KALINA KREDIT LOMBARD</option>
+                <option value="KO'MAK KREDIT LOMBARD">KO'MAK KREDIT LOMBARD</option>
+                <option value="LAMUS LOMBARD">LAMUS LOMBARD</option>
+                <option value="LOBAR KREDIT NUR LOMBARD">LOBAR KREDIT NUR LOMBARD</option>
+                <option value="LOMBARD 911">LOMBARD 911</option>
+                <option value="LOMBARD ASAT-KREDIT">LOMBARD ASAT-KREDIT</option>
+                <option value="LOMBARD AVANGARD-KREDIT">LOMBARD AVANGARD-KREDIT</option>
+                <option value="LOMBARD BARDOSH-BIZNES">LOMBARD BARDOSH-BIZNES</option>
+                <option value="LOMBARD BIZNES AZIA INVEST">LOMBARD BIZNES AZIA INVEST</option>
+                <option value="LOMBARD DAROFF-INVEST">LOMBARD DAROFF-INVEST</option>
+                <option value="LOMBARD EVRIKA KREDIT">LOMBARD EVRIKA KREDIT</option>
+                <option value="LOMBARD GAZALKENT KREDIT">LOMBARD GAZALKENT KREDIT</option>
+                <option value="LOMBARD GOLD FINANCE BUSINESS">LOMBARD GOLD FINANCE BUSINESS</option>
+                <option value="LOMBARD GOLDEN-KREDIT">LOMBARD GOLDEN-KREDIT</option>
+                <option value="LOMBARD HAMKOR-KREDIT">LOMBARD HAMKOR-KREDIT</option>
+                <option value="LOMBARD IXLOS INVEST">LOMBARD IXLOS INVEST</option>
+                <option value="LOMBARD JAYRON KREDIT">LOMBARD JAYRON KREDIT</option>
+                <option value="LOMBARD KIBRAY-KREDIT">LOMBARD KIBRAY-KREDIT</option>
+                <option value="LOMBARD KRISTAL-KREDIT">LOMBARD KRISTAL-KREDIT</option>
+                <option value="LOMBARD LOTOS KREDIT">LOMBARD LOTOS KREDIT</option>
+                <option value="LOMBARD PROFIT SERVICE">LOMBARD PROFIT SERVICE</option>
+                <option value="LOMBARD QULAY-KREDIT">LOMBARD QULAY-KREDIT</option>
+                <option value="LOMBARD QUSHBEGI-KREDIT">LOMBARD QUSHBEGI-KREDIT</option>
+                <option value="LOMBARD RELIABLE-CREDIT">LOMBARD RELIABLE-CREDIT</option>
+                <option value="LOMBARD SERGELI KREDIT">LOMBARD SERGELI KREDIT</option>
+                <option value="LOMBARD SHOKIR INVEST">LOMBARD SHOKIR INVEST</option>
+                <option value="LOMBARD SIMXO RUBEN">LOMBARD SIMXO RUBEN</option>
+                <option value="LOMBARD SITORA SARMOYA">LOMBARD SITORA SARMOYA</option>
+                <option value="LOMBARD STOLICHNIY KREDIT">LOMBARD STOLICHNIY KREDIT</option>
+                <option value="LOMBARD SVETLANA-KREDIT">LOMBARD SVETLANA-KREDIT</option>
+                <option value="LOMBARD TASHKREDIT">LOMBARD TASHKREDIT</option>
+                <option value="LOMBARD TOPAZ KREDIT">LOMBARD TOPAZ KREDIT</option>
+                <option value="LOMBARD VENERA KREDIT">LOMBARD VENERA KREDIT</option>
+                <option value="LOMBARD YANGIBOZOR KREDIT">LOMBARD YANGIBOZOR KREDIT</option>
+                <option value="LOMBARD-SHARQ KREDIT">LOMBARD-SHARQ KREDIT</option>
+                <option value="MANDARIN LOMBARD">MANDARIN LOMBARD</option>
+                <option value="MAROKAND LOMBARD">MAROKAND LOMBARD</option>
+                <option value="MAXIMUM LOMBARD">MAXIMUM LOMBARD</option>
+                <option value="MOMENT KREDIT LOMBARD">MOMENT KREDIT LOMBARD</option>
+                <option value="NAVOIY LOMBARD PLUS">NAVOIY LOMBARD PLUS</option>
+                <option value="NILUFAR ASILBEK BARAKA">NILUFAR ASILBEK BARAKA</option>
+                <option value="NORIK-CREDIT">NORIK-CREDIT</option>
+                <option value="OLOY-INVEST LOMBARD">OLOY-INVEST LOMBARD</option>
+                <option value="OLTIN LOMBARD">OLTIN LOMBARD</option>
+                <option value="OPTIMUM KREDIT LOMBARD">OPTIMUM KREDIT LOMBARD</option>
+                <option value="OQTEPA CAPITAL LOMBARD">OQTEPA CAPITAL LOMBARD</option>
+                <option value="PLATINUM LOMBARD">PLATINUM LOMBARD</option>
+                <option value="PUL SANDIQ LOMBARD">PUL SANDIQ LOMBARD</option>
+                <option value="SARMOYA-MADAD LOMBARD">SARMOYA-MADAD LOMBARD</option>
+                <option value="SEIF LOMBARD">SEIF LOMBARD</option>
+                <option value="SHAXZOD NUR KREDIT LOMBARD">SHAXZOD NUR KREDIT LOMBARD</option>
+                <option value="SHERZOD KREDIT INVEST LOMBARD">SHERZOD KREDIT INVEST LOMBARD</option>
+                <option value="STAR KREDIT LOMBARD">STAR KREDIT LOMBARD</option>
+                <option value="SWIFT LOMBARD CREDIT">SWIFT LOMBARD CREDIT</option>
+                <option value="TODAY FINANCE LOMBARD">TODAY FINANCE LOMBARD</option>
+                <option value="TO'Y-TEPA KREDIT">TO'Y-TEPA KREDIT</option>
+                <option value="UNION STANDART FINANCE">UNION STANDART FINANCE</option>
+                <option value="VODI LOMBARD">VODI LOMBARD</option>
+                <option value="XORAZM LOMBARD PLUS">XORAZM LOMBARD PLUS</option>
+                <option value="YANGI YO'L ISHONCH KREDIT LOMBARD">YANGI YO'L ISHONCH KREDIT LOMBARD</option>
+                <option value="YASHMA LOMBARD">YASHMA LOMBARD</option>
+                <option value="ZOLOTO LOMBARD">ZOLOTO LOMBARD</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>6. Lombard haqida qayerdan xabar topdingiz?</label>
+            <div class="radio-group">
+                <div class="option-item"><input type="radio" name="Manba" value="Tanishlar" required> <label>Tanishlar yoki do‘stlar</label></div>
+                <div class="option-item"><input type="radio" name="Manba" value="Tashqi reklama"> <label>Ko‘chadagi tashqi reklama</label></div>
+                <div class="option-item"><input type="radio" name="Manba" value="Telegram"> <label>Telegram</label></div>
+                <div class="option-item"><input type="radio" name="Manba" value="Instagram"> <label>Instagram</label></div>
+                <div class="option-item"><input type="radio" name="Manba" value="Facebook"> <label>Facebook</label></div>
+                <div class="option-item"><input type="radio" name="Manba" value="Youtube"> <label>Youtube</label></div>
+                <div class="option-item"><input type="radio" name="Manba" value="Internet qidiruv"> <label>Google / Yandex</label></div>
+                <div class="option-item"><input type="radio" name="Manba" value="Xarita"> <label>2GIS / Google Maps</label></div>
+                <div class="option-item"><input type="radio" name="Manba" value="Eski mijoz"> <label>Oldindan mijozingizman</label></div>
+                <div class="option-item"><input type="radio" name="Manba" value="Tasodifan"> <label>Tasodifan ko‘rib qoldim</label></div>
+                <div class="option-item"><input type="radio" name="Manba" value="Boshqa"> <label>Boshqa</label></div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>7. Nega aynan bizning lombardni tanladingiz? (Bir nechta)</label>
+            <div class="checkbox-group">
+                <div class="option-item"><input type="checkbox" name="Sabab" value="Yuqori baholash"> <label>Yuqori baholash narxi</label></div>
+                <div class="option-item"><input type="checkbox" name="Sabab" value="Past foiz"> <label>Past foiz stavkasi</label></div>
+                <div class="option-item"><input type="checkbox" name="Sabab" value="Joylashuv"> <label>Joylashuv qulayligi</label></div>
+                <div class="option-item"><input type="checkbox" name="Sabab" value="Tezlik"> <label>Tezlik (Hujjatlashtirish)</label></div>
+                <div class="option-item"><input type="checkbox" name="Sabab" value="Ishonchlilik"> <label>Ishonchlilik va xavfsizlik</label></div>
+                <div class="option-item"><input type="checkbox" name="Sabab" value="Ish vaqti"> <label>Ish vaqti qulayligi</label></div>
+                <div class="option-item"><input type="checkbox" name="Sabab" value="Madaniyat"> <label>Xizmat ko‘rsatish madaniyati</label></div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>8. Lombard tanlashda eng muhim bitta omil nima?</label>
+            <div class="radio-group">
+                <div class="option-item"><input type="radio" name="Omil" value="Qimmat baholash" required> <label>Oltin / mulkning qimmat baholanishi</label></div>
+                <div class="option-item"><input type="radio" name="Omil" value="Past foiz"> <label>Foizning pastligi</label></div>
+                <div class="option-item"><input type="radio" name="Omil" value="Sir saqlanish"> <label>Sir saqlanishi (konfidensiallik)</label></div>
+                <div class="option-item"><input type="radio" name="Omil" value="Qaytarib olish"> <label>Mulkni qaytarib olish imkoniyatining yuqoriligi</label></div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>9. Bizning xizmatimizdan qoniqdingizmi?</label>
+            <div class="radio-group">
+                <div class="option-item"><input type="radio" name="Qoniqish" value="Ha, albatta" required> <label>Ha, albatta</label></div>
+                <div class="option-item"><input type="radio" name="Qoniqish" value="Ha, lekin kamchiliklar bor"> <label>Ha, lekin kamchiliklar bor</label></div>
+                <div class="option-item"><input type="radio" name="Qoniqish" value="Yo‘q"> <label>Yo‘q, tavsiya qilmayman</label></div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>10. Taklifingiz bormi? (Ixtiyoriy)</label>
+            <textarea name="Taklif" rows="4" placeholder="Fikr va mulohazalaringiz..."></textarea>
+        </div>
+
+        <button type="submit" id="submitBtn">Yuborish</button>
+        <div class="limit-info" id="limitInfo"></div>
+        <div class="loading" id="loading">Yuborilmoqda, iltimos kuting...</div>
+        <div class="error-message" id="errorMessage">Xatolik yuz berdi. Internetni tekshirib qayta urinib ko'ring.</div>
+    </form>
+    
+    <div class="success-message" id="successMessage">
+        <h2>Rahmat!</h2>
+        <p>Sizning javobingiz muvaffaqiyatli yuborildi.</p>
+        <button onclick="location.reload()" style="margin-top:20px; width:auto; padding: 10px 20px;">Yana yuborish (Test rejimida)</button>
+    </div>
+</div>
+
+<script>
+    // YANGI UPDATE: Limit 10taga oshirildi
+    const MAX_SUBMISSIONS_PER_DAY = 10;
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxZxUB7fEZyovOK0aFtpTGa9DSye8AYTi20hWbY6AfmQvjiausjmoqgLvN_qOj5K6xi/exec';
+
+    // 1. IP Manzilni aniqlash
+    fetch('https://api.ipify.org?format=json')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('userIP').value = data.ip;
+            checkRateLimit();
+        })
+        .catch(error => console.log('IP aniqlanmadi', error));
+
+    function checkRateLimit() {
+        const today = new Date().toDateString();
+        const storedDate = localStorage.getItem('lastSubmissionDate');
+        let count = parseInt(localStorage.getItem('submissionCount')) || 0;
+
+        // Agar sana o'zgargan bo'lsa, hisoblagichni yangilaymiz
+        if (storedDate !== today) {
+            count = 0;
+            localStorage.setItem('lastSubmissionDate', today);
+            localStorage.setItem('submissionCount', 0);
+        }
+
+        const remaining = MAX_SUBMISSIONS_PER_DAY - count;
+        
+        if (count >= MAX_SUBMISSIONS_PER_DAY) {
+            document.getElementById('lombardForm').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'block';
+            document.getElementById('successMessage').innerHTML = '<h2>Limit tugadi</h2><p>Siz bugun limitdan (10 marta) foydalanib bo\'ldingiz.</p>';
+        } else {
+            document.getElementById('limitInfo').innerText = `Bugungi qolgan urinishlar soni: ${remaining} ta (Test rejimi)`;
+        }
+    }
+
+    const form = document.forms['lombardForm'];
+    const submitBtn = document.getElementById('submitBtn');
+    const loading = document.getElementById('loading');
+    const successMsg = document.getElementById('successMessage');
+    const errorMsg = document.getElementById('errorMessage');
+
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        
+        // Limitni qayta tekshirish (bosishdan oldin)
+        let count = parseInt(localStorage.getItem('submissionCount')) || 0;
+        if (count >= MAX_SUBMISSIONS_PER_DAY) {
+            alert("Limit tugadi!");
+            return;
+        }
+
+        // Checkboxlar uchun maxsus yig'ish (Sabab)
+        const formData = new FormData(form);
+        const sabablar = [];
+        document.querySelectorAll('input[name="Sabab"]:checked').forEach((checkbox) => {
+            sabablar.push(checkbox.value);
+        });
+        formData.set('Sabab', sabablar.join(", "));
+
+        submitBtn.disabled = true;
+        submitBtn.style.display = 'none';
+        loading.style.display = 'block';
+        errorMsg.style.display = 'none';
+
+        fetch(scriptURL, { method: 'POST', body: formData})
+            .then(response => {
+                loading.style.display = 'none';
+                form.style.display = 'none';
+                successMsg.style.display = 'block';
+                
+                // Muvaffaqiyatli bo'lsa hisoblagichni oshiramiz
+                let currentCount = parseInt(localStorage.getItem('submissionCount')) || 0;
+                localStorage.setItem('submissionCount', currentCount + 1);
+                localStorage.setItem('lastSubmissionDate', new Date().toDateString());
+            })
+            .catch(error => {
+                console.error('Error!', error.message);
+                loading.style.display = 'none';
+                submitBtn.style.display = 'block';
+                submitBtn.disabled = false;
+                errorMsg.style.display = 'block';
+                errorMsg.innerText = "Xatolik: " + error.message;
+            });
+    });
+</script>
+
+</body>
+</html>
